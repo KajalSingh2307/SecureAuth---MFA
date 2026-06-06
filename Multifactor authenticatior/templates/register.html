@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Register - SecureAuth MFA{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <h2 class="card-title">Create Account</h2>
+    <p class="card-desc">Set up your SecureAuth credentials and enable MFA.</p>
+
+    <!-- Flask Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {% if category == 'danger' %}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    {% else %}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    {% endif %}
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register') }}" onsubmit="return validatePasswords()">
+        <div class="form-group">
+            <label class="form-label" for="username">Username</label>
+            <div class="input-container">
+                <input type="text" id="username" name="username" class="form-input" placeholder="e.g. cyber_analyst" required autocomplete="username">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-container">
+                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. user@domain.com" required autocomplete="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-container">
+                <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="confirm_password">Confirm Password</label>
+            <div class="input-container">
+                <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+            <span id="password-match-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none; margin-top: 0.5rem;">Passwords do not match.</span>
+        </div>
+
+        <button type="submit" class="btn">
+            Continue to MFA Setup
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+    </form>
+
+    <div class="auth-footer">
+        Already have an account? <a href="{{ url_for('login') }}">Sign In</a>
+    </div>
+</div>
+
+<script>
+function validatePasswords() {
+    const pw = document.getElementById('password').value;
+    const confirmPw = document.getElementById('confirm_password').value;
+    const errText = document.getElementById('password-match-error');
+    
+    if (pw !== confirmPw) {
+        errText.style.display = 'block';
+        document.getElementById('confirm_password').focus();
+        return false;
+    }
+    errText.style.display = 'none';
+    return true;
+}
+</script>
+{% endblock %}
