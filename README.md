@@ -15,11 +15,11 @@ This project demonstrates practical cybersecurity concepts such as secure passwo
 9. Login Activity Monitoring
 
 **Tech Stack**
-Backend - Python,Flask
-Database - SQLite
-Security Libraries - Flask-Bcrypt, PyOTP
-Frontend - HTML, CSS, JavaScript
-Authentication - Google Authenticator
+-- Backend - Python,Flask
+-- Database - SQLite
+-- Security Libraries - Flask-Bcrypt, PyOTP
+-- Frontend - HTML, CSS, JavaScript
+-- Authentication - Google Authenticator
 
 **System Workflow**
 1. User registers an account.
