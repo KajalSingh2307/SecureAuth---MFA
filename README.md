@@ -4,15 +4,15 @@ A secure web-based Multi-Factor Authentication (MFA) system developed using Pyth
 This project demonstrates practical cybersecurity concepts such as secure password storage, multi-factor authentication, brute-force protection, session management, and audit logging.
 
 **Features**
-> User Registration & Login
-> Password Hashing using Bcrypt
-> Multi-Factor Authentication (MFA)
-> Google Authenticator Integration
-> TOTP-Based OTP Verification
-> Brute-Force Attack Protection
-> Account Lockout Mechanism
-> Session Timeout Management
-> Login Activity Monitoring
+1. User Registration & Login
+2. Password Hashing using Bcrypt
+3. Multi-Factor Authentication (MFA)
+4. Google Authenticator Integration
+5. TOTP-Based OTP Verification
+6. Brute-Force Attack Protection
+7. Account Lockout Mechanism
+8. Session Timeout Management
+9. Login Activity Monitoring
 
 **Tech Stack**
 Backend - Python,Flask
